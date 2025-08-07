@@ -57,6 +57,9 @@ export async function getBook(id) {
     const response = await axios({
       method: 'GET',
       url: `${API_ROUTES.BOOKS}/${id}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     const book = response.data;
     // eslint-disable-next-line no-underscore-dangle
@@ -73,6 +76,9 @@ export async function getBestRatedBooks() {
     const response = await axios({
       method: 'GET',
       url: `${API_ROUTES.BEST_RATED}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     return formatBooks(response.data);
   } catch (e) {
@@ -108,7 +114,7 @@ export async function rateBook(id, userId, rating) {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-      }
+      },
     );
     const book = response.data;
     // eslint-disable-next-line no-underscore-dangle

@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 
 const bookRoutes = require('./routes/bookRoute');
 const userRoutes = require('./routes/userRoute');
-const bookModel = require('./models/bookModel');
-const userModel = require('./models/userModel');
+
+const path = require('path');
 
 /** ************ Connection à la base de données *********** */
 mongoose
@@ -35,5 +35,6 @@ app.use(bodyParser.json());
 
 app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
