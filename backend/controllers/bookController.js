@@ -1,6 +1,6 @@
 // in controllers/stuff.js
 
-const Book = require('../models/book');
+const Book = require('../models/bookModel');
 
 exports.createBook = (req, res, next) => {
   const book = new Book({
@@ -74,7 +74,7 @@ exports.deleteBook = (req, res, next) => {
     });
 };
 
-exports.getAllStuff = (req, res, next) => {
+exports.getAllBooks = (req, res, next) => {
   Book.find()
     .then((books) => {
       res.status(200).json(books);

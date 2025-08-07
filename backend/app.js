@@ -2,7 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const stuffRoutes = require('./routes/stuff');
+const bookRoutes = require('./routes/bookRoute');
+const userRoutes = require('./routes/userRoute');
+const bookModel = require('./models/bookModel');
+const userModel = require('./models/userModel');
 
 /** ************ Connection à la base de données *********** */
 mongoose
@@ -27,3 +30,10 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(bodyParser.json());
+
+app.use('/api/books', bookRoutes);
+app.use('/api/auth', userRoutes);
+
+module.exports = app;
